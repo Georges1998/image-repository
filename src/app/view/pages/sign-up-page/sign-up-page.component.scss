@@ -1,0 +1,20 @@
+.signup-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  input {
+    margin: 20px 0;
+  }
+  button{ 
+      width:100px
+  }
+}
+.header {
+  margin: 30px;
+  width: 100%;
+  text-align: center;
+  h3 {
+    font-size: 3rem;
+  }
+}

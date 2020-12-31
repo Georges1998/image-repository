@@ -1,1 +1,53 @@
-<p>sign-up-page works!</p>
+<div class="header"><h3>Login Page</h3></div>
+<div class="signup-page">
+  <div style="width: 40%; justify-self: center">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+      <div>
+        <label for="name"> Email </label>
+        <input
+          class="form-control"
+          id="email"
+          type="text"
+          formControlName="email"
+        />
+      </div>
+
+      <div>
+        <label for="password"> Password </label>
+        <input
+          class="form-control"
+          id="password"
+          type="password"
+          formControlName="password"
+        />
+      </div>
+
+      <button type="button" class="btn btn-dark">Login</button>
+    </form>
+  </div>
+  <div style="width: 40%; justify-self: center">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+      <div>
+        <label for="name"> Email </label>
+        <input
+          class="form-control"
+          id="email"
+          type="text"
+          formControlName="email"
+        />
+      </div>
+
+      <div>
+        <label for="password"> Password </label>
+        <input
+          class="form-control"
+          id="password"
+          type="password"
+          formControlName="password"
+        />
+      </div>
+
+      <button type="button" class="btn btn-dark">Sign Up</button>
+    </form>
+  </div>
+</div>
