@@ -67,5 +67,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    return this.http.post<any>('http://localhost:3000/logout', {});
   }
 }

@@ -9,9 +9,17 @@ import { SignUpPageComponent } from './view/pages/sign-up-page/sign-up-page.comp
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './view/pages/home-page/home-page.component';
+import * as Cloudinary from 'cloudinary-core';
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, SignUpPageComponent, HomePageComponent],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    SignUpPageComponent,
+    HomePageComponent,
+  ],
   imports: [
+    CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'donxt20bs' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,1 +1,11 @@
 <p>home-page works!</p>
+<!-- <input type="file" (change)="onFileSelected($event)" /> -->
+<input
+  name="file"
+  type="file"
+  (change)="onFileSelected($event)"
+  class="file-upload"
+  data-cloudinary-field="image_id"
+  data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
+/>
+<button (click)="onUpload()">Upload</button>
