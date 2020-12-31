@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthGuard } from 'src/app/services/auth-guard';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -9,8 +12,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class SignUpPageComponent implements OnInit {
   items: any;
   checkoutForm;
+  signupForm;
 
   constructor(
+    private authService: AuthService,
+    private authguard: AuthGuard,
+    private router: Router,
     // private cartService: CartService,
     private formBuilder: FormBuilder
   ) {
@@ -18,17 +25,44 @@ export class SignUpPageComponent implements OnInit {
       email: '',
       password: '',
     });
+    this.signupForm = this.formBuilder.group({
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+    });
   }
 
   ngOnInit() {
-    // this.items = this.cartService.getItems();
+    if (this.authguard.canActivate) {
+      this.router.navigate(['/']);
+    }
   }
 
-  onSubmit(customerData: any) {
-    // Process checkout data here
-    // this.items = this.cartService.clearCart();
-    this.checkoutForm.reset();
+  onSubmit(customerData: { email: string; password: string }) {
+    // this.checkoutForm.reset();
+    this.authService
+      .login(customerData.email, customerData.password)
+      .subscribe((data) => {
+        this.router.navigate(['/']);
+      });
+  }
 
-    console.warn('Your order has been submitted', customerData);
+  signup(customerData: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+  }) {
+    this.authService
+      .signup(
+        customerData.email,
+        customerData.password,
+        customerData.firstName,
+        customerData.lastName
+      )
+      .subscribe((data) => {
+        this.router.navigate(['/']);
+      });
   }
 }
