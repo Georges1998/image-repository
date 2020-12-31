@@ -1,4 +1,4 @@
-<p>home-page works!</p>
+<h1>My Images</h1>
 <!-- <input type="file" (change)="onFileSelected($event)" /> -->
 <input
   name="file"
@@ -8,4 +8,27 @@
   data-cloudinary-field="image_id"
   data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
 />
-<button (click)="onUpload()">Upload</button>
+
+<button
+  type="button"
+  class="btn btn-dark"
+  (click)="onUpload()"
+  [disabled]="selectedFile == null"
+>
+  Upload
+</button>
+<div *ngIf="images$ | async as images">
+  <div *ngFor="let image of images">
+    <div class="card" style="width: 18rem">
+      <img [src]="image.url" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Title: {{ image.title }}</h5>
+        <h5 class="card-title">Price: {{ image.price }}</h5>
+        <div style="display: flex; justify-content: space-around">
+          <a href="#" class="btn btn-primary">Buy</a>
+          <a href="#" class="btn btn-primary">Edit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

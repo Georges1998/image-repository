@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './view/pages/home-page/home-page.component';
 import * as Cloudinary from 'cloudinary-core';
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import { NgxsModule } from '@ngxs/store';
+import { ImageState } from './state/images.state';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,7 @@ import { CloudinaryModule } from '@cloudinary/angular-5.x';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxsModule.forRoot([ImageState]),
   ],
   providers: [],
   bootstrap: [AppComponent],
