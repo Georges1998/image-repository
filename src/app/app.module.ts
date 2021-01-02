@@ -15,6 +15,7 @@ import { NgxsModule } from '@ngxs/store';
 import { ImageState } from './state/images.state';
 import { ProfilePageComponent } from './view/pages/profile-page/profile-page.component';
 import { UploadPageComponent } from './view/pages/upload-page/upload-page.component';
+import { PurchasedImagesPageComponent } from './view/pages/purchased-images-page/purchased-images-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { UploadPageComponent } from './view/pages/upload-page/upload-page.compon
     HomePageComponent,
     ProfilePageComponent,
     UploadPageComponent,
+    PurchasedImagesPageComponent,
   ],
   imports: [
     CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'donxt20bs' }),

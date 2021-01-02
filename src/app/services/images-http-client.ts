@@ -10,11 +10,17 @@ import { IImage } from '../models/i-image';
 export class ImagesHttpClient {
   private imageUrl = 'http://localhost:3000/image';
   private userUrl = 'http://localhost:3000/user';
+  private purchaseUrl = 'http://localhost:3000/purchased';
 
   constructor(private http: HttpClient) {}
 
   getallUsersImages(id: string): Observable<IImage[]> {
     const url = `${this.imageUrl}/${id}`;
+    return this.http.get<IImage[]>(url);
+  }
+  
+  getAllPurchasedImages(id: string): Observable<IImage[]> {
+    const url = `${this.purchaseUrl}/${id}`;
     return this.http.get<IImage[]>(url);
   }
 
