@@ -13,12 +13,16 @@ import * as Cloudinary from 'cloudinary-core';
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
 import { NgxsModule } from '@ngxs/store';
 import { ImageState } from './state/images.state';
+import { ProfilePageComponent } from './view/pages/profile-page/profile-page.component';
+import { UploadPageComponent } from './view/pages/upload-page/upload-page.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     SignUpPageComponent,
     HomePageComponent,
+    ProfilePageComponent,
+    UploadPageComponent,
   ],
   imports: [
     CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'donxt20bs' }),

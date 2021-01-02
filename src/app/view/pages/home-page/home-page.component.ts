@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { IImage } from 'src/app/models/i-image';
+import { ImagesHttpClient } from 'src/app/services/images-http-client';
 import { ImageState } from 'src/app/state/images.state';
 
 @Component({
@@ -11,7 +12,10 @@ import { ImageState } from 'src/app/state/images.state';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private imageshttpClient: ImagesHttpClient
+  ) {}
   selectedFile: File = null;
   @Select(ImageState.images) images$: Observable<IImage[]>;
 
@@ -29,7 +33,19 @@ export class HomePageComponent implements OnInit {
     this.http
       .post('https://api.cloudinary.com/v1_1/donxt20bs/upload', fd)
       .subscribe((res) => {
-        var url = res['secure_url'];
+        var url: string = res['secure_url'];
+        this.imageshttpClient
+          .addNewImage(
+            {
+              title: 'george',
+              url: url,
+              price: 23,
+            },
+            localStorage.getItem('currentUser')
+          )
+          .subscribe((data) => {
+            console.log(data);
+          });
         console.log(url);
       });
   }

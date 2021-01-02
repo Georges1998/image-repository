@@ -8,14 +8,18 @@ import { IImage } from '../models/i-image';
   providedIn: 'root',
 })
 export class ImagesHttpClient {
-  private url = 'http://localhost:3000/image';
-
-  baseUrl = this.url;
+  private imageUrl = 'http://localhost:3000/image';
+  private userUrl = 'http://localhost:3000/user';
 
   constructor(private http: HttpClient) {}
 
   getallUsersImages(id: string): Observable<IImage[]> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.imageUrl}/${id}`;
     return this.http.get<IImage[]>(url);
+  }
+
+  addNewImage(image: IImage, id: string): Observable<IImage> {
+    const url = `${this.userUrl}/${id}`;
+    return this.http.post<IImage>(url, image);
   }
 }

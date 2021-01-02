@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IUser } from '../models/i-user';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +52,9 @@ export class AuthService {
           localStorage.setItem('currentUser', user._id);
           this.currentUserSubject.next(user._id);
           return user;
+        }),
+        catchError((err) => {
+          throw 'Error in source. Details: ' + err.message;
         })
       );
   }

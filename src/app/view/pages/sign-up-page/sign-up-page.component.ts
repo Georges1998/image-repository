@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 import { AuthGuard } from 'src/app/services/auth-guard';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignUpPageComponent implements OnInit {
   items: any;
+  error: string = '';
   checkoutForm;
   signupForm;
 
@@ -62,7 +64,12 @@ export class SignUpPageComponent implements OnInit {
         customerData.lastName
       )
       .subscribe((data) => {
-        this.router.navigate(['/']);
+        if (data) {
+          console.log(data);
+          this.router.navigate(['/']);
+        }else{
+          console.log("boo")
+        }
       });
   }
 }

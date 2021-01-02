@@ -1,18 +1,36 @@
 <nav class="navbar navbar-dark bg-dark">
-  <!-- Navbar content -->
-
-  <ul class="nav justify-content-end">
+  <ul
+    style="
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 100%;
+    "
+  >
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
+      <a
+        class="nav-link active"
+        aria-current="page"
+        href=""
+        style="color: white"
+        >Home</a
+      >
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a class="nav-link" href="profile" style="color: white">Profile</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
+      <a class="nav-link" href="upload" style="color: white">Upload Images</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" tabindex="-1" aria-disabled="true" (click)="logout()"
+      <a
+        href="#"
+        class="nav-link"
+        tabindex="-1"
+        aria-disabled="true"
+        (click)="logout()"
+        style="color: red"
         >log out</a
       >
     </li>
