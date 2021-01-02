@@ -1,1 +1,47 @@
-<p>upload-page works!</p>
+<div class="upload-images-page">
+  <div style="width: 40%; justify-self: center">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+      <div>
+        <label for="title"> Title </label>
+        <input
+          required
+          class="form-control"
+          id="title"
+          type="text"
+          formControlName="title"
+        />
+      </div>
+
+      <div>
+        <label for="price"> Price </label>
+        <input
+          required
+          minlength="3"
+          class="form-control"
+          id="price"
+          type="number"
+          formControlName="price"
+        />
+      </div>
+
+      <input
+        name="file"
+        type="file"
+        (change)="onFileSelected($event)"
+        class="file-upload"
+        formControlName="image"
+        data-cloudinary-field="image_id"
+        data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
+      />
+
+      <button
+        [disabled]="checkoutForm.invalid || selectedFile == null"
+        type="button"
+        class="btn btn-dark"
+        type="submit"
+      >
+        Upload
+      </button>
+    </form>
+  </div>
+</div>

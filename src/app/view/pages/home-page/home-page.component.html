@@ -1,22 +1,6 @@
 <h1>My Images</h1>
 <!-- <input type="file" (change)="onFileSelected($event)" /> -->
-<input
-  name="file"
-  type="file"
-  (change)="onFileSelected($event)"
-  class="file-upload"
-  data-cloudinary-field="image_id"
-  data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
-/>
 
-<button
-  type="button"
-  class="btn btn-dark"
-  (click)="onUpload()"
-  [disabled]="selectedFile == null"
->
-  Upload
-</button>
 <div
   *ngIf="images$ | async as images"
   style="
