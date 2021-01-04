@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { IImage } from 'src/app/models/i-image';
+import { IUser } from 'src/app/models/i-user';
 import { ImagesHttpClient } from 'src/app/services/images-http-client';
 import { ImageState } from 'src/app/state/images.state';
+import { UserState } from 'src/app/state/user.state';
 
 @Component({
   selector: 'app-home-page',
@@ -13,7 +15,12 @@ import { ImageState } from 'src/app/state/images.state';
 })
 export class HomePageComponent implements OnInit {
   constructor() {}
-  @Select(ImageState.images) images$: Observable<IImage[]>;
+  @Select(ImageState.random) images$: Observable<IImage[]>;
 
-  ngOnInit(): void {}
+  @Select(UserState.user) user$: Observable<IUser>;
+  ngOnInit(): void {
+    this.user$.subscribe((e) => {
+      console.log(e);
+    });
+  }
 }

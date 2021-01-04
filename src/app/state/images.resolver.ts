@@ -35,6 +35,7 @@ export class ImageResolver implements Resolve<IImage[]> {
             return { error: v };
           }
           const dataState = this.store.selectSnapshot(ImageState);
+          console.log(dataState)
           return dataState.images;
         })
       );

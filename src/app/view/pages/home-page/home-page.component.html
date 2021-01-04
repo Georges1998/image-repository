@@ -1,6 +1,8 @@
-<h1>My Images</h1>
+<div *ngIf="user$ | async as user">
+  <div>Credits: {{ user.credit }} $</div>
+</div>
+<h1>Images for sale</h1>
 <!-- <input type="file" (change)="onFileSelected($event)" /> -->
-
 <div
   *ngIf="images$ | async as images"
   style="
@@ -11,17 +13,19 @@
     flex-wrap: wrap;
   "
 >
-  <div *ngFor="let image of images">
-    <div class="card" style="width: 20rem">
-      <img [src]="image.url" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h3 class="card-title">Title: {{ image.title }}</h3>
-        <h3 class="card-title">Price: {{ image.price }}</h3>
-        <div style="display: flex; justify-content: space-around">
-          <a href="#" class="btn btn-primary">Buy</a>
-          <!-- <a href="#" class="btn btn-primary">Edit</a> -->
+  <ng-container *ngIf="images.length > 0">
+    <div *ngFor="let image of images">
+      <div class="card" style="width: 20rem">
+        <img [src]="image.url" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h3 class="card-title">Title: {{ image.title }}</h3>
+          <h3 class="card-title">Price: {{ image.price }}</h3>
+          <div style="display: flex; justify-content: space-around">
+            <a href="#" class="btn btn-primary">Buy</a>
+            <!-- <a href="#" class="btn btn-primary">Edit</a> -->
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </div>

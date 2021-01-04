@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { catchError } from 'rxjs/operators';
 import { AuthGuard } from 'src/app/services/auth-guard';
 import { AuthService } from 'src/app/services/auth.service';
+import { GetCurrentUser, SignUpUser } from 'src/app/state/user.action';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -21,7 +23,8 @@ export class SignUpPageComponent implements OnInit {
     private authguard: AuthGuard,
     private router: Router,
     // private cartService: CartService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private store: Store
   ) {
     this.checkoutForm = this.formBuilder.group({
       email: '',
@@ -42,9 +45,10 @@ export class SignUpPageComponent implements OnInit {
   }
 
   onSubmit(customerData: { email: string; password: string }) {
+    this.store.dispatch(new GetCurrentUser({email: customerData.email,password: customerData.password}))
     // this.checkoutForm.reset();
-    this.authService
-      .login(customerData.email, customerData.password)
+    // this.authService
+    //   .login(customerData.email, customerData.password)
       .subscribe((data) => {
         this.router.navigate(['/']);
       });
@@ -56,19 +60,21 @@ export class SignUpPageComponent implements OnInit {
     firstName: string;
     lastName: string;
   }) {
-    this.authService
-      .signup(
-        customerData.email,
-        customerData.password,
-        customerData.firstName,
-        customerData.lastName
+    this.store
+      .dispatch(
+        new SignUpUser({
+          email: customerData.email,
+          password: customerData.password,
+          firstName: customerData.firstName,
+          lastName: customerData.lastName,
+        })
       )
       .subscribe((data) => {
         if (data) {
           console.log(data);
           this.router.navigate(['/']);
-        }else{
-          console.log("boo")
+        } else {
+          console.log('boo');
         }
       });
   }

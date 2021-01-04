@@ -11,6 +11,7 @@ export class ImagesHttpClient {
   private imageUrl = 'http://localhost:3000/image';
   private userUrl = 'http://localhost:3000/user';
   private purchaseUrl = 'http://localhost:3000/purchased';
+  private randomUrl = 'http://localhost:3000/random';
 
   constructor(private http: HttpClient) {}
 
@@ -18,9 +19,14 @@ export class ImagesHttpClient {
     const url = `${this.imageUrl}/${id}`;
     return this.http.get<IImage[]>(url);
   }
-  
+  getRandomImages(id: string): Observable<IImage[]> {
+    const url = `${this.randomUrl}/${id}`;
+    return this.http.get<IImage[]>(url);
+  }
+
   getAllPurchasedImages(id: string): Observable<IImage[]> {
     const url = `${this.purchaseUrl}/${id}`;
+    console.log(url);
     return this.http.get<IImage[]>(url);
   }
 

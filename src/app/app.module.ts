@@ -16,6 +16,8 @@ import { ImageState } from './state/images.state';
 import { ProfilePageComponent } from './view/pages/profile-page/profile-page.component';
 import { UploadPageComponent } from './view/pages/upload-page/upload-page.component';
 import { PurchasedImagesPageComponent } from './view/pages/purchased-images-page/purchased-images-page.component';
+import { UserState } from './state/user.state';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,10 @@ import { PurchasedImagesPageComponent } from './view/pages/purchased-images-page
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([ImageState]),
+    NgxsModule.forRoot([ImageState, UserState]),
+    NgxsStoragePluginModule.forRoot({
+      key: UserState
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

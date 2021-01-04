@@ -1,9 +1,9 @@
 export interface IImage {
+  _id?: string;
   price: number;
-  purshased?: boolean;
+  purchased?: boolean;
   title: string;
   url: string;
   user?: string;
   discount?: number;
-
 }

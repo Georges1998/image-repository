@@ -24,12 +24,16 @@ export class AuthService {
 
   signup(email: string, lastName: string, password: string, firstName: string) {
     return this.http
-      .post<IUser>('http://localhost:3000/user', {
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-      })
+      .post<IUser>(
+        'http://localhost:3000/user',
+        {
+          email: email,
+          password: password,
+          firstName: firstName,
+          lastName: lastName,
+        },
+        { withCredentials: true }
+      )
       .pipe(
         map((u) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -42,10 +46,14 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<IUser>('http://localhost:3000/login', {
-        email,
-        password,
-      })
+      .post<IUser>(
+        'http://localhost:3000/login',
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      )
       .pipe(
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
