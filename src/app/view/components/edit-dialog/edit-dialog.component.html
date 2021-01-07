@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>{{ image.title }}</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <div>
+    <label for="title">Title </label>
+    <input
+      matInput
+      required
+      class="form-control"
+      id="title"
+      type="text"
+      placeholder="Title"
+      formControlName="title"
+    />
+  </div>
+  <div>
+    <label for="title">Price </label>
+    <input
+      matInput
+      required
+      class="form-control"
+      id="title"
+      type="text"
+      placeholder="Price"
+      formControlName="price"
+    />
+  </div>
+  <div>
+    <label for="title">Discount </label>
+    <input
+      matInput
+      class="form-control"
+      id="title"
+      type="text"
+      placeholder="Discount"
+      formControlName="discount"
+    />
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="btn" (click)="close()">Close</button>
+  <button
+    [disabled]="form.invalid"
+    type="button"
+    class="btn btn-dark"
+    (click)="save()"
+    type="submit"
+  >
+    Update
+  </button>
+</mat-dialog-actions>

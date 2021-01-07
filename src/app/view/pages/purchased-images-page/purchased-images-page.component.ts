@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Select } from '@ngxs/store';
 
 import { Observable } from 'rxjs';
 import { IImage } from 'src/app/models/i-image';
 import { ImageState } from 'src/app/state/images.state';
+import { EditDialogComponent } from '../../components/edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-purchased-images-page',
@@ -15,4 +17,6 @@ export class PurchasedImagesPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  
 }

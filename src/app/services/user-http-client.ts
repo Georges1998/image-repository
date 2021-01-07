@@ -12,9 +12,9 @@ export class UserHttpClient {
   private getUser = 'http://localhost:3000/user';
 
   constructor(private http: HttpClient) {}
-  buyNewImage(id: string, imageId: string): Observable<IUser> {
+  buyNewImage(id: string, imageId: string): Observable<any> {
     const url = `${this.buyUrl}/${id}/${imageId}`;
-    return this.http.post<IUser>(url, {});
+    return this.http.post<any>(url, {});
   }
 
   getUserById(id: string): Observable<IUser> {

@@ -6,7 +6,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { IImage } from 'src/app/models/i-image';
 import { IUser } from 'src/app/models/i-user';
-import { ImagesHttpClient } from 'src/app/services/images-http-client';
 import { ImageState } from 'src/app/state/images.state';
 import { BuyImage } from 'src/app/state/user.action';
 import { UserState } from 'src/app/state/user.state';
@@ -21,8 +20,12 @@ export class HomePageComponent implements OnInit {
   @Select(ImageState.random) images$: Observable<IImage[]>;
 
   @Select(UserState.user) user$: Observable<IUser>;
+  @Select(UserState.message) message$: Observable<string>;
   ngOnInit(): void {
-    this.user$.subscribe((e) => {
+    this.message$.subscribe((e) => {
+      if (e != "") {
+        alert(e);
+      }
     });
   }
 

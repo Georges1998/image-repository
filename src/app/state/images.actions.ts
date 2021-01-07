@@ -1,3 +1,5 @@
+import { IImage } from '../models/i-image';
+
 export class GetAllImagesForUser {
   static readonly type = '[IMAGE] Get by user ID';
   constructor(public payload: { id: string }) {}
@@ -14,4 +16,9 @@ export class GetRandomImagesForUser {
 export class DeleteImage {
   static readonly type = '[IMAGE] delete images';
   constructor(public payload: { id: string }) {}
+}
+
+export class UpdateImage {
+  static readonly type = '[IMAGE] update image';
+  constructor(public payload: { id: string; image: IImage }) {}
 }

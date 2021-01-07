@@ -22,13 +22,21 @@
         <div class="card-body">
           <h3 class="card-title">Title: {{ image.title }}</h3>
           <h3 class="card-title">Price: {{ image.price }}</h3>
+          <ng-container *ngIf="image.discount">
+            <h3 class="card-title">Discount: {{ image.discount }}</h3>
+            <h3 class="card-title">
+              Price after discount: {{ image.price - image.discount }}
+            </h3>
+          </ng-container>
           <h3 *ngIf="image.purchased" class="card-title">PURCHASED</h3>
           <div style="display: flex; justify-content: space-between">
-            <button class="btn btn-primary" (click)="deleteImage(image._id)">
+            <button class="btn btn-danger" (click)="deleteImage(image._id)">
               Delete
             </button>
 
-            <a href="#" class="btn btn-primary">Edit</a>
+            <button class="btn btn-primary" (click)="openDialog(image)">
+              Edit
+            </button>
           </div>
         </div>
       </div>

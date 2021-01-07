@@ -1,7 +1,5 @@
 import {
   Resolve,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';

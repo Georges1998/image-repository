@@ -16,6 +16,12 @@
         <div class="card-body">
           <h3 class="card-title">Title: {{ image.title }}</h3>
           <h3 class="card-title">Price: {{ image.price }}</h3>
+          <ng-container *ngIf="image.discount">
+            <h3 class="card-title">Discount: {{ image.discount }}</h3>
+            <h3 class="card-title">
+              Price after discount: {{ image.price - image.discount }}
+            </h3>
+          </ng-container>
         </div>
       </div>
     </div>

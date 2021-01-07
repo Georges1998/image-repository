@@ -11,12 +11,14 @@ import { BuyImage, GetCurrentUser, GetUser, SignUpUser } from './user.action';
 
 export class UserStateModel {
   user: IUser;
+  message: string;
 }
 
 @State<UserStateModel>({
   name: 'user',
   defaults: {
     user: null,
+    message: '',
   },
 })
 @Injectable()
@@ -30,6 +32,10 @@ export class UserState {
   @Selector()
   public static user(state: UserStateModel): IUser {
     return state.user;
+  }
+  @Selector()
+  public static message(state: UserStateModel): string {
+    return state.message;
   }
   @Action(GetCurrentUser)
   login(ctx: StateContext<UserStateModel>, action: GetCurrentUser) {
@@ -107,7 +113,8 @@ export class UserState {
         tap((res) => {
           ctx.setState({
             ...state,
-            user: res,
+            user: res.user,
+            message: res.message
           });
         }),
         catchError((err: HttpErrorResponse) => {

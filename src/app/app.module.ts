@@ -18,6 +18,9 @@ import { UploadPageComponent } from './view/pages/upload-page/upload-page.compon
 import { PurchasedImagesPageComponent } from './view/pages/purchased-images-page/purchased-images-page.component';
 import { UserState } from './state/user.state';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { EditDialogComponent } from './view/components/edit-dialog/edit-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,19 +30,19 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
     ProfilePageComponent,
     UploadPageComponent,
     PurchasedImagesPageComponent,
+    EditDialogComponent,
   ],
   imports: [
     CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'donxt20bs' }),
     HttpClientModule,
+    MatFormFieldModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxsModule.forRoot([ImageState, UserState]),
-    // NgxsStoragePluginModule.forRoot({
-    //   key: UserState
-    // }),
   ],
   providers: [],
   bootstrap: [AppComponent],

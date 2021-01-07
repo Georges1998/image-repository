@@ -40,4 +40,8 @@ export class ImagesHttpClient {
     const url = `${this.userUrl}/${id}`;
     return this.http.post<IImage>(url, image);
   }
+  editImage(image: IImage, id: string): Observable<any> {
+    const url = `${this.imageUrl}/${id}`;
+    return this.http.put<any>(url, image);
+  }
 }
