@@ -71,10 +71,8 @@ export class SignUpPageComponent implements OnInit {
       )
       .subscribe((data) => {
         if (data) {
-          console.log(data);
           this.router.navigate(['/']);
         } else {
-          console.log('boo');
         }
       });
   }

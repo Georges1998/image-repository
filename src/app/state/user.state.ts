@@ -6,7 +6,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { IImage } from '../models/i-image';
 import { IUser } from '../models/i-user';
 import { AuthService } from '../services/auth.service';
-import { GetCurrentUser, SignUpUser } from './user.action';
+import { UserHttpClient } from '../services/user-http-client';
+import { BuyImage, GetCurrentUser, GetUser, SignUpUser } from './user.action';
 
 export class UserStateModel {
   user: IUser;
@@ -22,6 +23,7 @@ export class UserStateModel {
 export class UserState {
   constructor(
     private authService: AuthService,
+    private userHttpClient: UserHttpClient,
 
     private store: Store
   ) {}
@@ -38,12 +40,30 @@ export class UserState {
       .login(action.payload.email, action.payload.password)
       .pipe(
         tap((res) => {
-
           ctx.setState({
             ...state,
             user: res,
           });
-          console.log(ctx.getState())
+        }),
+        catchError((err: HttpErrorResponse) => {
+          alert('Please try again.');
+          return throwError(new Error(err.message));
+        })
+      );
+  }
+  @Action(GetUser)
+  getUser(ctx: StateContext<UserStateModel>, action: GetUser) {
+    const state = ctx.getState();
+    let query = {};
+
+    return this.userHttpClient
+      .getUserById(action.payload.id)
+      .pipe(
+        tap((res) => {
+          ctx.setState({
+            ...state,
+            user: res,
+          });
         }),
         catchError((err: HttpErrorResponse) => {
           alert('Please try again.');
@@ -63,6 +83,26 @@ export class UserState {
         action.payload.password,
         action.payload.firstName
       )
+      .pipe(
+        tap((res) => {
+          ctx.setState({
+            ...state,
+            user: res,
+          });
+        }),
+        catchError((err: HttpErrorResponse) => {
+          alert('Please try again.');
+          return throwError(new Error(err.message));
+        })
+      );
+  }
+  @Action(BuyImage)
+  buyImage(ctx: StateContext<UserStateModel>, action: BuyImage) {
+    const state = ctx.getState();
+    let query = {};
+
+    return this.userHttpClient
+      .buyNewImage(action.payload.id, action.payload.imageId)
       .pipe(
         tap((res) => {
           ctx.setState({

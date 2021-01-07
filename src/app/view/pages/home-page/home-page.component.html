@@ -21,7 +21,9 @@
           <h3 class="card-title">Title: {{ image.title }}</h3>
           <h3 class="card-title">Price: {{ image.price }}</h3>
           <div style="display: flex; justify-content: space-around">
-            <a href="#" class="btn btn-primary">Buy</a>
+            <a href="/purchased" class="btn btn-primary" (click)="buyImage(image._id)"
+              >Buy</a
+            >
             <!-- <a href="#" class="btn btn-primary">Edit</a> -->
           </div>
         </div>

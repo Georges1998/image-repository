@@ -6,6 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { IImage } from '../models/i-image';
 import { ImagesHttpClient } from '../services/images-http-client';
 import {
+  DeleteImage,
   GetAllImagesForUser,
   GetAllPurchasedImagesForUser,
   GetRandomImagesForUser,
@@ -55,7 +56,6 @@ export class ImageState {
 
     return this.imageshttpClient.getallUsersImages(action.payload.id).pipe(
       tap((res) => {
-        console.log('getttttttt');
         ctx.setState({
           ...state,
           images: res,
@@ -77,7 +77,6 @@ export class ImageState {
 
     return this.imageshttpClient.getAllPurchasedImages(action.payload.id).pipe(
       tap((res) => {
-        console.log(res);
         ctx.setState({
           ...state,
           purchased: res,
@@ -100,11 +99,24 @@ export class ImageState {
 
     return this.imageshttpClient.getRandomImages(action.payload.id).pipe(
       tap((res) => {
-        console.log(res);
         ctx.setState({
           ...state,
           random: res,
         });
+      }),
+      catchError((err: HttpErrorResponse) => {
+        alert('Please try again.');
+        return throwError(new Error(err.message));
+      })
+    );
+  }
+  @Action(DeleteImage)
+  deleteImage(ctx: StateContext<ImageStateModel>, action: DeleteImage) {
+    const state = ctx.getState();
+    let query = {};
+
+    return this.imageshttpClient.deleteImage(action.payload.id).pipe(
+      tap((res) => {
       }),
       catchError((err: HttpErrorResponse) => {
         alert('Please try again.');

@@ -37,9 +37,9 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxsModule.forRoot([ImageState, UserState]),
-    NgxsStoragePluginModule.forRoot({
-      key: UserState
-    }),
+    // NgxsStoragePluginModule.forRoot({
+    //   key: UserState
+    // }),
   ],
   providers: [],
   bootstrap: [AppComponent],

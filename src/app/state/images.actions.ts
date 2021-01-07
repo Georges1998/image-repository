@@ -11,3 +11,7 @@ export class GetRandomImagesForUser {
   static readonly type = '[IMAGE] Get random images';
   constructor(public payload: { id: string }) {}
 }
+export class DeleteImage {
+  static readonly type = '[IMAGE] delete images';
+  constructor(public payload: { id: string }) {}
+}

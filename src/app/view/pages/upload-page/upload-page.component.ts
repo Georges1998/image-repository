@@ -12,6 +12,7 @@ import { ImagesHttpClient } from 'src/app/services/images-http-client';
 export class UploadPageComponent implements OnInit {
   checkoutForm;
   selectedFile: File = null;
+  disableButton: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -35,6 +36,7 @@ export class UploadPageComponent implements OnInit {
     const fd = new FormData();
     fd.append('file', this.selectedFile);
     fd.append('upload_preset', 'j4kjc2wq');
+    this.disableButton = true;
     this.http
       .post('https://api.cloudinary.com/v1_1/donxt20bs/upload', fd)
       .subscribe((res) => {
@@ -49,11 +51,9 @@ export class UploadPageComponent implements OnInit {
             localStorage.getItem('currentUser')
           )
           .subscribe((data) => {
-            console.log(data);
             this.checkoutForm.reset();
+            this.router.navigate(['/profile']);
           });
-        console.log(url);
-        this.router.navigate(['/profile']);
       });
   }
 }

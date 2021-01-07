@@ -21,7 +21,6 @@ export class ImageResolver implements Resolve<IImage[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): IImage[] | Observable<IImage[]> | Promise<IImage[]> {
-      console.log("gettt")
     return this.store
       .dispatch(
         new GetAllImagesForUser({ id: localStorage.getItem('currentUser') })
@@ -35,7 +34,6 @@ export class ImageResolver implements Resolve<IImage[]> {
             return { error: v };
           }
           const dataState = this.store.selectSnapshot(ImageState);
-          console.log(dataState)
           return dataState.images;
         })
       );

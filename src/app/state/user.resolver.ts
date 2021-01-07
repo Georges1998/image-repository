@@ -9,22 +9,23 @@ import { Store } from '@ngxs/store';
 import { catchError, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IImage } from '../models/i-image';
-import { GetAllPurchasedImagesForUser } from './images.actions';
+import { GetAllImagesForUser } from './images.actions';
 import { ImageState } from './images.state';
+import { IUser } from '../models/i-user';
+import { GetUser } from './user.action';
+import { UserState } from './user.state';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PurchasedResolver implements Resolve<IImage[]> {
+export class UserResolver implements Resolve<IUser> {
   constructor(private store: Store) {}
   resolve(
-  ): IImage[] | Observable<IImage[]> | Promise<IImage[]> {
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): IUser | Observable<IUser> | Promise<IUser> {
     return this.store
-      .dispatch(
-        new GetAllPurchasedImagesForUser({
-          id: localStorage.getItem('currentUser'),
-        })
-      )
+      .dispatch(new GetUser({ id: localStorage.getItem('currentUser') }))
       .pipe(
         catchError((err: any, caught) => {
           return of(err);
@@ -33,8 +34,8 @@ export class PurchasedResolver implements Resolve<IImage[]> {
           if (v instanceof HttpErrorResponse) {
             return { error: v };
           }
-          const dataState = this.store.selectSnapshot(ImageState);
-          return dataState.purchased;
+          const dataState = this.store.selectSnapshot(UserState);
+          return dataState.user;
         })
       );
   }

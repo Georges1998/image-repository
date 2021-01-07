@@ -6,4 +6,5 @@ export interface IImage {
   url: string;
   user?: string;
   discount?: number;
+  delete?: boolean;
 }

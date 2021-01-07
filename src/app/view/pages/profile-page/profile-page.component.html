@@ -1,7 +1,6 @@
-<div *ngIf="user$ | async as user">
-  <div>Name: {{ user.firstName }} {{ user.lastName }}</div>
-  <div>Credits: {{ user.credit }} $</div>
-</div>
+<div>Name: {{ user.firstName }} {{ user.lastName }}</div>
+<div>Credits: {{ user.credit }} $</div>
+
 <br />
 <h1>My Images</h1>
 
@@ -23,11 +22,12 @@
         <div class="card-body">
           <h3 class="card-title">Title: {{ image.title }}</h3>
           <h3 class="card-title">Price: {{ image.price }}</h3>
-          <h3 *ngIf="image.purchased" class="card-title">
-            PURCHASED
-          </h3>
+          <h3 *ngIf="image.purchased" class="card-title">PURCHASED</h3>
           <div style="display: flex; justify-content: space-between">
-            <a href="#" class="btn btn-primary">Delete</a>
+            <button class="btn btn-primary" (click)="deleteImage(image._id)">
+              Delete
+            </button>
+
             <a href="#" class="btn btn-primary">Edit</a>
           </div>
         </div>

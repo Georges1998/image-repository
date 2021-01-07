@@ -35,7 +35,7 @@
       />
 
       <button
-        [disabled]="checkoutForm.invalid || selectedFile == null"
+        [disabled]="checkoutForm.invalid || selectedFile == null || disableButton"
         type="button"
         class="btn btn-dark"
         type="submit"
