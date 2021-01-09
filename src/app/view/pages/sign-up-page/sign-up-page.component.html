@@ -2,6 +2,7 @@
 <div class="signup-page">
   <div style="width: 40%; justify-self: center">
     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+      <h1>Login</h1>
       <div>
         <label for="name"> Email </label>
         <input
@@ -37,6 +38,7 @@
   </div>
   <div style="width: 40%; justify-self: center">
     <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
+      <h1>Sign up</h1>
       <div>
         <label for="email"> Email </label>
         <input
