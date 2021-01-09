@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IUser } from '../models/i-user';
@@ -11,7 +11,12 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
-
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+    }),
+    withCredentials: true,
+  };
   constructor(private http: HttpClient) {
     if (localStorage.getItem('currentUser') != null) {
       this.currentUserSubject = new BehaviorSubject<any>(
@@ -33,7 +38,7 @@ export class AuthService {
           firstName: firstName,
           lastName: lastName,
         },
-        { withCredentials: true }
+        this.httpOptions
       )
       .pipe(
         map((u) => {
