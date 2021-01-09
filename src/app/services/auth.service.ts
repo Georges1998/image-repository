@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IUser } from '../models/i-user';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class AuthService {
   signup(email: string, lastName: string, password: string, firstName: string) {
     return this.http
       .post<IUser>(
-        'http://localhost:3000/user',
+        environment.apiUrl + '/user',
         {
           email: email,
           password: password,
@@ -47,7 +48,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<IUser>(
-        'http://localhost:3000/login',
+        environment.apiUrl + '/login',
         {
           email,
           password,
@@ -78,6 +79,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    return this.http.post<any>('http://localhost:3000/logout', {});
+    return this.http.post<any>(environment.apiUrl + '/logout', {});
   }
 }

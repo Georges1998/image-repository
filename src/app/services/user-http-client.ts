@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { IUser } from '../models/i-user';
 
@@ -8,8 +9,8 @@ import { IUser } from '../models/i-user';
   providedIn: 'root',
 })
 export class UserHttpClient {
-  private buyUrl = 'http://localhost:3000/buy';
-  private getUser = 'http://localhost:3000/user';
+  private buyUrl = environment.apiUrl + '/buy';
+  private getUser = environment.apiUrl + '/user';
 
   constructor(private http: HttpClient) {}
   buyNewImage(id: string, imageId: string): Observable<any> {

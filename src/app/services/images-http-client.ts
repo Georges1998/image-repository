@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { IImage } from '../models/i-image';
 
@@ -8,11 +9,11 @@ import { IImage } from '../models/i-image';
   providedIn: 'root',
 })
 export class ImagesHttpClient {
-  private imageUrl = 'http://localhost:3000/image';
-  private userUrl = 'http://localhost:3000/user';
-  private purchaseUrl = 'http://localhost:3000/purchased';
-  private randomUrl = 'http://localhost:3000/random';
-  private buyUrl = 'http://localhost:3000/buy';
+  private imageUrl = environment.apiUrl + '/image';
+  private userUrl = environment.apiUrl + '/user';
+  private purchaseUrl = environment.apiUrl + '/purchased';
+  private randomUrl = environment.apiUrl + '/random';
+  private buyUrl = environment.apiUrl + '/buy';
 
   constructor(private http: HttpClient) {}
 
