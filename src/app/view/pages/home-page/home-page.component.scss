@@ -16,9 +16,25 @@
   display: relative;
   bottom: 10px;
 }
+.load-image {
+  margin-left: 20px;
+}
 
 @media only screen and (max-width: 600px) {
+  .load-image {
+    font-size: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    top: 5px;
+  }
   .card {
     width: 70vw !important;
+  }
+  .name {
+    font-size: 13px;
+  }
+  .credit {
+    font-size: 10px;
   }
 }

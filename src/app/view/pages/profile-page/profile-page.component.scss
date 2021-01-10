@@ -6,6 +6,10 @@
   font-weight: 600;
   font-size: 1.5 rem;
 }
+.badge{
+    background-color: #5ba66e;
+    height:20px
+}
 .header {
   display: flex;
   width: 100%;
@@ -20,5 +24,11 @@
 @media only screen and (max-width: 600px) {
   .card {
     width: 70vw !important;
+  }
+  .name {
+    font-size: 18px;
+  }
+  .credit {
+    font-size: 10px;
   }
 }

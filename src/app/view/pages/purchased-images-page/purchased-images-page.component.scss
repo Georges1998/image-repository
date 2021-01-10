@@ -2,8 +2,15 @@
   display: relative;
   bottom: 10px;
 }
+
 @media only screen and (max-width: 600px) {
-  .card {
-    width: 70vw !important;
+    .card {
+      width: 70vw !important;
+    }
+    .name {
+      font-size: 18px;
+    }
+    .credit {
+      font-size: 10px;
+    }
   }
-}
