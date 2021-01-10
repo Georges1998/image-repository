@@ -1,7 +1,7 @@
-<div *ngIf="user$ | async as user">
-  <div>Credits: {{ user.credit }} $</div>
+<div class="header" *ngIf="user$ | async as user">
+  <div class="name">Images for sale</div>
+  <div class="credit">Credits: {{ user.credit }} $</div>
 </div>
-<h1>Images for sale</h1>
 <!-- <input type="file" (change)="onFileSelected($event)" /> -->
 <div
   *ngIf="images$ | async as images"
