@@ -8,7 +8,7 @@
   </div>
 </div>
 <div class="signup-page">
-  <div style="width: 90%; justify-self: center">
+  <div class="form" style="width: 90%">
     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
       <h1>Login</h1>
       <div>
@@ -52,7 +52,7 @@
       </div>
     </form>
   </div>
-  <div style="width: 90%; justify-self: center">
+  <div style="width: 90%" class="form2">
     <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
       <h1>Sign up</h1>
       <div>

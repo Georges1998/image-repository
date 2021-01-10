@@ -1,0 +1,28 @@
+.footer {
+  height: 50px;
+  bottom: 0;
+  width: 100%;
+  margin: 0 auto;
+  background-color: black;
+  color: white;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  h3 {
+    margin: 0;
+    height: 100%;
+  }
+  span {
+    align-self: center;
+    justify-self: center;
+    position: relative;
+    top: 7px;
+    left: 10px;
+  }
+  span:hover {
+    cursor: pointer;
+  }
+  a {
+    color: white;
+  }
+}

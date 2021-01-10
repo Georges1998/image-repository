@@ -80,6 +80,7 @@ export class SignUpPageComponent implements OnInit {
         if (data) {
           this.router.navigate(['/']);
         } else {
+          this.disableSignup = false;
         }
       });
   }

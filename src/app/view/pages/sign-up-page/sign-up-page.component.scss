@@ -38,9 +38,21 @@ form {
   margin-top: 10px;
   width: 100%;
 }
+.form {
+  justify-self: start;
+}
+.form2 {
+  justify-self: end;
+}
 
 @media only screen and (max-width: 600px) {
   .signup-page {
     grid-template-columns: 1fr;
+  }
+  .form {
+    justify-self: center;
+  }
+  .form2 {
+    justify-self: center;
   }
 }

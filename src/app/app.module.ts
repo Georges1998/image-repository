@@ -21,6 +21,7 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { EditDialogComponent } from './view/components/edit-dialog/edit-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FooterComponent } from './view/components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     UploadPageComponent,
     PurchasedImagesPageComponent,
     EditDialogComponent,
+    FooterComponent,
   ],
   imports: [
     CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'donxt20bs' }),
