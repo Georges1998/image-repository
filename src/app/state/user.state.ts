@@ -52,8 +52,7 @@ export class UserState {
           });
         }),
         catchError((err: HttpErrorResponse) => {
-          alert('Please try again.');
-          return throwError(new Error(err.message));
+          return throwError(new Error('Wrong Email or Passwords'));
         })
       );
   }
@@ -62,20 +61,18 @@ export class UserState {
     const state = ctx.getState();
     let query = {};
 
-    return this.userHttpClient
-      .getUserById(action.payload.id)
-      .pipe(
-        tap((res) => {
-          ctx.setState({
-            ...state,
-            user: res,
-          });
-        }),
-        catchError((err: HttpErrorResponse) => {
-          alert('Please try again.');
-          return throwError(new Error(err.message));
-        })
-      );
+    return this.userHttpClient.getUserById(action.payload.id).pipe(
+      tap((res) => {
+        ctx.setState({
+          ...state,
+          user: res,
+        });
+      }),
+      catchError((err: HttpErrorResponse) => {
+        alert('Please try again.');
+        return throwError(new Error(err.message));
+      })
+    );
   }
   @Action(SignUpUser)
   registerUser(ctx: StateContext<UserStateModel>, action: SignUpUser) {
@@ -114,7 +111,7 @@ export class UserState {
           ctx.setState({
             ...state,
             user: res.user,
-            message: res.message
+            message: res.message,
           });
         }),
         catchError((err: HttpErrorResponse) => {

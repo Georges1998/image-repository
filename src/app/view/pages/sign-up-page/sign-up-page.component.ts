@@ -1,7 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthGuard } from 'src/app/services/auth-guard';
 import { AuthService } from 'src/app/services/auth.service';
@@ -51,6 +53,13 @@ export class SignUpPageComponent implements OnInit {
         new GetCurrentUser({
           email: customerData.email,
           password: customerData.password,
+        })
+      )
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          this.disableLogin = false;
+          alert(err);
+          return throwError(new Error('Wrong Email or Passwords'));
         })
       )
       .subscribe((data) => {
