@@ -19,10 +19,8 @@ export class SignUpPageComponent implements OnInit {
   signupForm;
 
   constructor(
-    private authService: AuthService,
     private authguard: AuthGuard,
     private router: Router,
-    // private cartService: CartService,
     private formBuilder: FormBuilder,
     private store: Store
   ) {
@@ -45,10 +43,13 @@ export class SignUpPageComponent implements OnInit {
   }
 
   onSubmit(customerData: { email: string; password: string }) {
-    this.store.dispatch(new GetCurrentUser({email: customerData.email,password: customerData.password}))
-    // this.checkoutForm.reset();
-    // this.authService
-    //   .login(customerData.email, customerData.password)
+    this.store
+      .dispatch(
+        new GetCurrentUser({
+          email: customerData.email,
+          password: customerData.password,
+        })
+      )
       .subscribe((data) => {
         this.router.navigate(['/']);
       });
