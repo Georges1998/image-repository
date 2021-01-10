@@ -17,7 +17,7 @@
     <div *ngFor="let image of images">
       <div class="card" style="width: 20rem">
         <a [href]="image.url">
-          <img [src]="image.url" class="card-img-top" [alt]="image.name" />
+          <img [src]="image.url" class="card-img-top" [alt]="image.title" />
         </a>
         <div class="card-body">
           <h3 class="card-title">Title: {{ image.title }}</h3>
