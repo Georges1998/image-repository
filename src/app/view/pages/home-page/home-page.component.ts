@@ -21,15 +21,17 @@ export class HomePageComponent implements OnInit {
 
   @Select(UserState.user) user$: Observable<IUser>;
   @Select(UserState.message) message$: Observable<string>;
+  disableBuy: boolean = false;
   ngOnInit(): void {
     this.message$.subscribe((e) => {
-      if (e != "") {
+      if (e != '') {
         alert(e);
       }
     });
   }
 
   buyImage(imageId: string) {
+    this.disableBuy = true;
     this.store
       .dispatch(
         new BuyImage({
@@ -39,11 +41,16 @@ export class HomePageComponent implements OnInit {
       )
       .pipe(
         catchError((err: any, caught) => {
+          this.disableBuy = false;
           return of(err);
         })
       )
       .subscribe(() => {
+        this.disableBuy = false;
         this.router.navigate(['/purchased']);
       });
+  }
+  refreshPage() {
+    window.location.reload();
   }
 }

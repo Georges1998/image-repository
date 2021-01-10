@@ -1,10 +1,14 @@
-<div class="header">Welcome to <b>Not Just a Gallery</b></div>
-<div class="subheader">
-  A marketplace to store, sell and buy images.
-  <span style="color: rgb(7, 182, 138)"> New users will get 200$ to trade</span>
+<div class="header">
+  Welcome to Not Just a Gallery
+  <div class="subheader" style="text-align: start">
+    A marketplace to <b>store</b>, <b>sell</b> and <b>buy</b> images.
+  </div>
+  <div class="subheader2" style="text-align: start; color: rgb(0, 119, 89)">
+    New users will get 200$ to trade
+  </div>
 </div>
 <div class="signup-page">
-  <div style="width: 40%; justify-self: center">
+  <div style="width: 90%; justify-self: center">
     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
       <h1>Login</h1>
       <div>
@@ -31,16 +35,24 @@
       </div>
 
       <button
-        [disabled]="checkoutForm.invalid"
+        [disabled]="checkoutForm.invalid || disableLogin"
         type="button"
         class="btn btn-dark"
         type="submit"
       >
         Login
       </button>
+      <div
+        *ngIf="disableLogin"
+        class="spinner-grow text-primary"
+        style="margin-left: 20px; position: relative; bottom: 5px"
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </form>
   </div>
-  <div style="width: 40%; justify-self: center">
+  <div style="width: 90%; justify-self: center">
     <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
       <h1>Sign up</h1>
       <div>
@@ -87,10 +99,18 @@
         type="button"
         class="btn btn-dark"
         type="submit"
-        [disabled]="signupForm.invalid"
+        [disabled]="signupForm.invalid || disableSignup"
       >
         Sign Up
       </button>
+      <div
+        *ngIf="disableSignup"
+        class="spinner-grow text-primary"
+        style="margin-left: 20px; position: relative; bottom: 5px"
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
       <h3>{{ error }}</h3>
     </form>
   </div>

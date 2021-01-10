@@ -1,8 +1,21 @@
 <div class="header" *ngIf="user$ | async as user">
-  <h1>Images for sale</h1>
-  <div class="credit">Credits: {{ user.credit }} $</div>
+  <div style="display:flex">
+    <h1>Images for sale</h1>
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      style="align-self: start; justify-self: start; margin-left: 20px;"
+      (click)="refreshPage()"
+    >
+      Load more images
+    </button>
+  </div>
+  <div *ngIf="disableBuy" class="spinner-grow text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <h1 class="credit">Credits: {{ user.credit }} $</h1>
 </div>
-<!-- <input type="file" (change)="onFileSelected($event)" /> -->
+
 <div
   *ngIf="images$ | async as images"
   style="
@@ -30,7 +43,13 @@
             </h3>
           </ng-container>
           <div style="display: flex; justify-content: space-around">
-            <a class="btn btn-primary" (click)="buyImage(image._id)">Buy</a>
+            <button
+              [disabled]="disableBuy"
+              class="btn btn-primary"
+              (click)="buyImage(image._id)"
+            >
+              Buy
+            </button>
           </div>
         </div>
       </div>

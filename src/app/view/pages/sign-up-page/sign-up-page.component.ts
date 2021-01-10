@@ -14,6 +14,8 @@ import { GetCurrentUser, SignUpUser } from 'src/app/state/user.action';
 })
 export class SignUpPageComponent implements OnInit {
   items: any;
+  disableSignup: boolean = false;
+  disableLogin: boolean = false;
   error: string = '';
   checkoutForm;
   signupForm;
@@ -43,6 +45,7 @@ export class SignUpPageComponent implements OnInit {
   }
 
   onSubmit(customerData: { email: string; password: string }) {
+    this.disableLogin = true;
     this.store
       .dispatch(
         new GetCurrentUser({
@@ -51,6 +54,7 @@ export class SignUpPageComponent implements OnInit {
         })
       )
       .subscribe((data) => {
+        this.disableLogin = false;
         this.router.navigate(['/']);
       });
   }
@@ -61,6 +65,7 @@ export class SignUpPageComponent implements OnInit {
     firstName: string;
     lastName: string;
   }) {
+    this.disableSignup = true;
     this.store
       .dispatch(
         new SignUpUser({
@@ -71,6 +76,7 @@ export class SignUpPageComponent implements OnInit {
         })
       )
       .subscribe((data) => {
+        this.disableSignup = false;
         if (data) {
           this.router.navigate(['/']);
         } else {
