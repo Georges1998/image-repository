@@ -1,4 +1,5 @@
 <h1 style="margin-top: 25px">Purchased Images</h1>
+<button
 <div
   *ngIf="images$ | async as images"
   style="
@@ -21,7 +22,7 @@
           <ng-container *ngIf="image.discount">
             <h3 class="card-title">Discount: {{ image.discount }} $</h3>
             <h3 class="card-title">
-              {{ (image.price - image.discount).toFixed(2) }} $
+              Price after dicount: {{ (image.price - image.discount).toFixed(2) }} $
             </h3>
           </ng-container>
         </div>
