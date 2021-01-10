@@ -1,4 +1,4 @@
-<div>Name: {{ user.firstName }} {{ user.lastName }}</div>
+<div class="name">Name: {{ user.firstName }} {{ user.lastName }}</div>
 <div>Credits: {{ user.credit }} $</div>
 
 <br />
@@ -18,7 +18,9 @@
   <ng-container *ngIf="images.length > 0">
     <div *ngFor="let image of images">
       <div class="card" style="width: 20rem">
-        <img [src]="image.url" class="card-img-top" alt="..." />
+        <a [href]="image.url">
+          <img [src]="image.url" class="card-img-top" alt="..." />
+        </a>
         <div class="card-body">
           <h3 class="card-title">Title: {{ image.title }}</h3>
           <h3 class="card-title">Price: {{ image.price }} $</h3>
