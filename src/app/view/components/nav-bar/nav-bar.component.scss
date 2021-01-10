@@ -13,3 +13,13 @@ ul {
   text-align: center;
   height: 100%;
 }
+@media only screen and (max-width: 600px) {
+  ul {
+    padding-inline-start: 10px;
+    li {
+      a {
+        font-size: 10px;
+      }
+    }
+  }
+}

@@ -12,7 +12,13 @@
   justify-content: space-between;
   margin-top: 25px;
 }
-.card:hover{
-    display: relative;
-    bottom:10px
+.card:hover {
+  display: relative;
+  bottom: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 70vw !important;
+  }
 }
