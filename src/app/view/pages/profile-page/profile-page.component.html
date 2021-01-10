@@ -1,6 +1,7 @@
-<div class="name">Name: {{ user.firstName }} {{ user.lastName }}</div>
-<div>Credits: {{ user.credit }} $</div>
-
+<div class="header">
+  <div class="name">Name: {{ user.firstName }} {{ user.lastName }}</div>
+  <div class="credit">Credits: {{ user.credit }} $</div>
+</div>
 <br />
 <h1>My Images</h1>
 
@@ -32,12 +33,11 @@
           </ng-container>
           <h3 *ngIf="image.purchased" class="card-title">PURCHASED</h3>
           <div style="display: flex; justify-content: space-between">
-            <button class="btn btn-danger" (click)="deleteImage(image._id)">
-              Delete
-            </button>
-
             <button class="btn btn-primary" (click)="openDialog(image)">
               Edit
+            </button>
+            <button class="btn btn-danger" (click)="deleteImage(image._id)">
+              Delete
             </button>
           </div>
         </div>
