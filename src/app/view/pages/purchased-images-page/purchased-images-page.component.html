@@ -5,14 +5,16 @@
     display: flex;
     width: 100%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
   "
 >
   <ng-container *ngIf="images.length > 0">
     <div *ngFor="let image of images">
       <div class="card" style="width: 20rem">
-        <img [src]="image.url" class="card-img-top" alt="..." />
+        <a [href]="image.url">
+          <img [src]="image.url" class="card-img-top" [alt]="image.name" />
+        </a>
         <div class="card-body">
           <h3 class="card-title">Title: {{ image.title }}</h3>
           <h3 class="card-title">Price: {{ image.price }} $</h3>
