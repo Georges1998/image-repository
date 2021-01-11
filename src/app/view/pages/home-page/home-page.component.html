@@ -1,58 +1,63 @@
-<div class="header" *ngIf="user$ | async as user">
-  <div style="display: flex">
-    <h1 class="name">Images for sale</h1>
-    <button
-      type="button"
-      class="btn btn-outline-primary load-image"
-      style="align-self: start; justify-self: start"
-      (click)="refreshPage()"
-    >
-      Load more images
-    </button>
+<div *ngIf="user$ | async as user">
+  <div class="header">
+    <div style="display: flex">
+      <h1 class="name">Images for sale</h1>
+      <button
+        type="button"
+        class="btn btn-outline-primary load-image"
+        style="align-self: start; justify-self: start"
+        (click)="refreshPage()"
+      >
+        Load more images
+      </button>
+    </div>
+    <div *ngIf="disableBuy" class="spinner-grow text-danger" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <h1 class="credit">Credits: {{ user.credit }} $</h1>
   </div>
-  <div *ngIf="disableBuy" class="spinner-grow text-danger" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-  <h1 class="credit">Credits: {{ user.credit }} $</h1>
-</div>
 
-<div
-  *ngIf="images$ | async as images"
-  style="
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  "
->
-  <ng-container *ngIf="images.length > 0">
-    <div *ngFor="let image of images">
-      <div class="card" style="width: 20rem">
-        <a [href]="image.url">
-          <img [src]="image.url" class="card-img-top" [alt]="image.title" />
-        </a>
-        <div class="card-body">
-          <h3 class="card-title">Title: {{ image.title }}</h3>
-          <h3 class="card-title">Price: {{ image.price }} $</h3>
-          <ng-container *ngIf="image.discount">
-            <h3 class="card-title">Discount: {{ image.discount }} $</h3>
-            <h3 class="card-title">
-              Price after dicount:
-              {{ (image.price - image.discount).toFixed(2) }} $
-            </h3>
-          </ng-container>
-          <div style="display: flex; justify-content: space-around">
-            <button
-              [disabled]="disableBuy"
-              class="btn btn-primary"
-              (click)="buyImage(image._id)"
-            >
-              Buy
-            </button>
+  <div
+    *ngIf="images$ | async as images"
+    style="
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    "
+  >
+    <ng-container *ngIf="images.length > 0">
+      <div *ngFor="let image of images">
+        <div class="card" style="width: 20rem">
+          <a [href]="image.url">
+            <img [src]="image.url" class="card-img-top" [alt]="image.title" />
+          </a>
+          <div class="card-body">
+            <h3 class="card-title">Title: {{ image.title }}</h3>
+            <h3 class="card-title">Price: {{ image.price }} $</h3>
+            <ng-container *ngIf="image.discount">
+              <h3 class="card-title">Discount: {{ image.discount }} $</h3>
+              <h3 class="card-title">
+                Price after dicount:
+                {{ (image.price - image.discount).toFixed(2) }} $
+              </h3>
+            </ng-container>
+            <div style="display: flex; justify-content: space-around">
+              <button
+                [disabled]="
+                  disableBuy ||
+                  (image.price - image.discount).toFixed(2) > user.credit
+                "
+                class="btn btn-primary"
+                (click)="buyImage(image._id)"
+              >
+                Buy
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
 </div>
