@@ -4,6 +4,10 @@ A marketpalce that stores and sell images. Users can create an account, browse i
 
 This project was generated with **Node.js**, **MongoDB** and **Angular**. 
 
+Database hosted by: MongoDB Atlas
+Backend hosted by: Heoku
+Frontend hosted by: Netlify
+
 ## <a name='Demo'></a> Demo
 
 Hosted by Netlify: [Demo](https://sharp-hugle-4d2359.netlify.app/)
