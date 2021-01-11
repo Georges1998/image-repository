@@ -58,12 +58,25 @@
       <div>
         <label for="email"> Email </label>
         <input
+          type="email"
+          name="email"
+          email
           required
           class="form-control"
           id="email"
           type="text"
           formControlName="email"
         />
+        <div
+          *ngIf="
+            signupForm.controls['email'].invalid &&
+            (signupForm.controls['email'].dirty ||
+              signupForm.controls['email'].touched)
+          "
+          class="alert alert-danger"
+        >
+          Email must be valid
+        </div>
       </div>
       <label for="firstName"> First Name </label>
       <input
@@ -73,6 +86,16 @@
         type="text"
         formControlName="firstName"
       />
+      <div
+        *ngIf="
+          signupForm.controls['firstName'].invalid &&
+          (signupForm.controls['firstName'].dirty ||
+            signupForm.controls['firstName'].touched)
+        "
+        class="alert alert-danger"
+      >
+        First name is required
+      </div>
       <label for="lastName"> Last Name </label>
       <input
         required
@@ -82,17 +105,37 @@
         type="text"
         formControlName="lastName"
       />
+      <div
+        *ngIf="
+          signupForm.controls['lastName'].invalid &&
+          (signupForm.controls['lastName'].dirty ||
+            signupForm.controls['lastName'].touched)
+        "
+        class="alert alert-danger"
+      >
+        Last name is required
+      </div>
 
       <div>
         <label for="password"> Password </label>
         <input
           required
-          minlength="3"
+          minlength="5"
           class="form-control"
           id="password"
           type="password"
           formControlName="password"
         />
+        <div
+          *ngIf="
+            signupForm.controls['password'].invalid &&
+            (signupForm.controls['password'].dirty ||
+              signupForm.controls['password'].touched)
+          "
+          class="alert alert-danger"
+        >
+          Password must be at least 5 characters
+        </div>
       </div>
 
       <button

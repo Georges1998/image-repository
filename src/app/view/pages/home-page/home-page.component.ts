@@ -1,11 +1,13 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { IImage } from 'src/app/models/i-image';
 import { IUser } from 'src/app/models/i-user';
+import { GetRandomImagesForUser } from 'src/app/state/images.actions';
 import { ImageState } from 'src/app/state/images.state';
 import { BuyImage } from 'src/app/state/user.action';
 import { UserState } from 'src/app/state/user.state';
@@ -16,7 +18,11 @@ import { UserState } from 'src/app/state/user.state';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  constructor(private store: Store, private router: Router) {}
+  constructor(
+    private store: Store,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {}
   @Select(ImageState.random) images$: Observable<IImage[]>;
 
   @Select(UserState.user) user$: Observable<IUser>;
@@ -25,7 +31,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.message$.subscribe((e) => {
       if (e != '') {
-        alert(e);
+        this._snackBar.open(e, 'Close', {});
       }
     });
   }
@@ -47,10 +53,20 @@ export class HomePageComponent implements OnInit {
       )
       .subscribe(() => {
         this.disableBuy = false;
-        this.router.navigate(['/purchased']);
+
+        this.store.dispatch(
+          new GetRandomImagesForUser({
+            id: localStorage.getItem('currentUser'),
+          })
+        );
       });
   }
+
   refreshPage() {
-    window.location.reload();
+    this.store.dispatch(
+      new GetRandomImagesForUser({
+        id: localStorage.getItem('currentUser'),
+      })
+    );
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ImagesHttpClient } from 'src/app/services/images-http-client';
 
@@ -14,6 +15,7 @@ export class UploadPageComponent implements OnInit {
   selectedFile: File = null;
   disableButton: boolean = false;
   constructor(
+    private _snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private imageshttpClient: ImagesHttpClient,
@@ -51,8 +53,13 @@ export class UploadPageComponent implements OnInit {
             localStorage.getItem('currentUser')
           )
           .subscribe((data) => {
+            this.disableButton = false;
             this.checkoutForm.reset();
-            this.router.navigate(['/profile']);
+            this._snackBar.open(
+              'Picture was successfuly uploaded. Check your profile.',
+              'Close',
+              {}
+            );
           });
       });
   }

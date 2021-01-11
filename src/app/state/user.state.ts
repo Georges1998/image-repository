@@ -111,7 +111,7 @@ export class UserState {
           ctx.setState({
             ...state,
             user: res.user,
-            message: res.message,
+            message: res.message + '. Check your Purchased Images.',
           });
         }),
         catchError((err: HttpErrorResponse) => {
