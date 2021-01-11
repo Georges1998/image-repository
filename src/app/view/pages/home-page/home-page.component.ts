@@ -9,7 +9,7 @@ import { IImage } from 'src/app/models/i-image';
 import { IUser } from 'src/app/models/i-user';
 import { GetRandomImagesForUser } from 'src/app/state/images.actions';
 import { ImageState } from 'src/app/state/images.state';
-import { BuyImage } from 'src/app/state/user.action';
+import { BuyImage, GetUser } from 'src/app/state/user.action';
 import { UserState } from 'src/app/state/user.state';
 
 @Component({
@@ -53,6 +53,9 @@ export class HomePageComponent implements OnInit {
       )
       .subscribe(() => {
         this.disableBuy = false;
+        this.store.dispatch(
+          new GetUser({ id: localStorage.getItem('currentUser') })
+        );
 
         this.store.dispatch(
           new GetRandomImagesForUser({

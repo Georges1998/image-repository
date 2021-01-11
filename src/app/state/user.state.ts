@@ -110,7 +110,6 @@ export class UserState {
         tap((res) => {
           ctx.setState({
             ...state,
-            user: res.user,
             message: res.message + '. Check your Purchased Images.',
           });
         }),

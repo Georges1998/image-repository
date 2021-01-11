@@ -46,8 +46,7 @@
             <div style="display: flex; justify-content: space-around">
               <button
                 [disabled]="
-                  disableBuy ||
-                  (image.price - image.discount).toFixed(2) > user.credit
+                  disableBuy || image.price - image.discount > user.credit
                 "
                 class="btn btn-primary"
                 (click)="buyImage(image._id)"

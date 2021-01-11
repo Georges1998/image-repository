@@ -37,9 +37,9 @@ export class ImagesHttpClient {
     return this.http.get<IImage[]>(url);
   }
 
-  addNewImage(image: IImage, id: string): Observable<IImage> {
+  addNewImage(image: IImage, id: string): Observable<any> {
     const url = `${this.userUrl}/${id}`;
-    return this.http.post<IImage>(url, image);
+    return this.http.post<any>(url, image);
   }
   editImage(image: IImage, id: string): Observable<any> {
     const url = `${this.imageUrl}/${id}`;
