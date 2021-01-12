@@ -91,6 +91,23 @@ mongo
 node index.js
 ```
 
+## Routes
+
+|    URL               | Method |                     Description                      |  body. |
+|:--------------------:|:------:|:----------------------------------------------------:|:------:|
+| `/purchased/:id`     | `GET`  |   Get all purchased images for a user                |        |
+| `/random/:id`        | `GET`  |   Get 10 random images for a user to buy             |        |
+| `/image/:id`         | `GET`  |   Get a specific image                               |        |
+| `/buy/:id/:imageid`  | `GET`  |   Buy an image                                       |        |
+| `/image`             | `GET`  |   Get all Images.                                    |        |
+| `/user/:id`          | `GET`  |   Get user by ID                                     |        |
+| `/login`             | `POST` |   Send email and password and retrieve User.         |        | 
+| `/logout`            | `POST` |   Log out user from the session.                     |        |
+| `/user`              | `POST` |   Create new user                                    | User   |
+| `/user/:id`          | `POST` |   Add new Image to the user                          | Image  |
+| `/image/:id`         | `PUT`  |   Update a specific image                            | Image  |
+| `/image/:id`         |`DELETE`|   Delete a specific image                            |        |
+
 ## UI
 
 <img width="1440" alt="Screen Shot 2021-01-11 at 1 56 11 PM" src="https://user-images.githubusercontent.com/46607090/104225937-0df2e280-5415-11eb-8d59-22aeacf5e039.png">
